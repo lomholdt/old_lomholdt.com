@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/vask', 'VasketidController@index');
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,12 +29,14 @@ Route::get('/', function () {
 |
 */
 
+Route::get('profile', ['middleware' => 'auth', function() {
+    Route::get('/blog/create', 'PostsController@create');
+}]);
+
 Route::group(['middleware' => ['web']], function () {
-    //
-});
 
-Route::group(['middleware' => 'web'], function () {
+    Route::resource('/blog', 'PostsController');
     Route::auth();
-
     Route::get('/home', 'HomeController@index');
+
 });
