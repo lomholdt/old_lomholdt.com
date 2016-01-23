@@ -30,7 +30,7 @@ class PostsController extends Controller
 		$post->body = $request->body;
 		$post->save();
 
-		return redirect('/blog/'.$post->slug);
+		return redirect('/blog/' . $post->slug);
 	}
 
 	public function create()
@@ -58,5 +58,13 @@ class PostsController extends Controller
     	$post->save();
 
     	return redirect('blog/' . $post->slug);
+    }
+
+    public function destroy(Post $post, $slug)
+    {
+    	$post = Post::whereSlug($slug)->firstOrFail();
+    	$post->delete();
+    	return redirect('blog');
+
     }
 }

@@ -4,8 +4,21 @@
 
 <div class="container">
 
-    <h1>{!! $post->title !!}</h1>
-    <p>{!! $post->body !!}</p>
+    <div class="page-header">
+    	<h1>{!! $post->title !!} <small>{{ $post->created_at }}</small></h1>
+    </div>
+    
+    <div>
+    	<p>{!! $post->body !!}</p>
+    </div>
+
+    <form action="/blog/{{ $post->slug }}" method="POST">
+    	{{ csrf_field() }}
+		{{ method_field('DELETE') }}
+
+		<button class="btn btn-danger">Delete Post</button>
+		
+    </form>
 
 </div>
 
