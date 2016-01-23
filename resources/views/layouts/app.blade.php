@@ -14,7 +14,8 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    <link href="{{ elixir('css/syntax.css') }}" rel="stylesheet">
 
 </head>
 <body id="app-layout">
@@ -70,6 +71,13 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="{{ elixir('js/syntax.js') }}"></script>
+
+    <script type="text/javascript">
+        SyntaxHighlighter.all()
+    </script>
+
     <script src="{{ elixir('js/all.js') }}"></script>
 </body>
 </html>

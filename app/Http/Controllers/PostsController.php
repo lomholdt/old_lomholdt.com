@@ -12,7 +12,7 @@ use App\Http\Requests\CreatePostRequest;
 class PostsController extends Controller
 {
 
-	public function __construct()
+	public function __construct(Post $post)
 	{
 		$this->middleware('auth', ['except' => ['show', 'index']]);
 	}
@@ -28,7 +28,6 @@ class PostsController extends Controller
 		$post = new Post;
 		$post->title = $request->title;
 		$post->body = $request->body;
-
 		$post->save();
 
 		return redirect('/blog/'.$post->slug);
@@ -39,14 +38,25 @@ class PostsController extends Controller
 		return view('posts.create');
 	}
 
-    public function show($slug)
+    public function show(Post $post, $slug)
     {
     	$post = Post::whereSlug($slug)->firstOrFail();
     	return view('posts.show', compact('post'));
     }
 
-    public function edit($slug){
+    public function edit(Post $post, $slug)
+    {
+    	$post = Post::whereSlug($slug)->firstOrFail();
+    	return view('posts.edit', compact('post'));
+    }
 
+    public function update(Request $request, $slug)
+    {
+    	$post = Post::whereSlug($slug)->firstOrFail();
+    	$post->title = $request->get('title');
+    	$post->body = $request->get('body');
+    	$post->save();
 
+    	return redirect('blog/' . $post->slug);
     }
 }

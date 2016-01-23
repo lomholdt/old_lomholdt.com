@@ -13,6 +13,10 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss')
+    .styles(['shCore.css', 'shThemeDefault.css'], 'public/css/syntax.css')
+    .scripts(['syntax/shCore.js', 
+    		  'syntax/brushes/shBrushJava.js',
+    		  'syntax/brushes/shBrushScala.js'], 'public/js/syntax.js')
     .scripts(['vue.min.js'])
-    .version(['public/css/app.css', 'public/js/all.js'])
+    .version(['public/css/app.css','public/css/syntax.css','public/js/syntax.js','public/js/all.js'])
 });

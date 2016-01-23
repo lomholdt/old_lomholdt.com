@@ -29,10 +29,6 @@ Route::get('/vask', 'VasketidController@index');
 |
 */
 
-Route::get('profile', ['middleware' => 'auth', function() {
-    Route::get('/blog/create', 'PostsController@create');
-}]);
-
 Route::group(['middleware' => ['web']], function () {
 
     Route::resource('/blog', 'PostsController');
