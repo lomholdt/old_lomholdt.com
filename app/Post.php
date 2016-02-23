@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
 	protected $fillable = ['title', 'body'];
+
 
     public static function boot()
     {
     	parent::boot();
-
     	static::creating(function($post){
 
     		$post->slug = str_slug($post->title);
@@ -29,6 +30,11 @@ class Post extends Model
     		}
 
     	});
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
 }

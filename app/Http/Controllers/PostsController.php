@@ -28,6 +28,7 @@ class PostsController extends Controller
 		$post = new Post;
 		$post->title = $request->title;
 		$post->body = $request->body;
+		$post->user_id = $request->user()->id;
 		$post->save();
 
 		return redirect('/blog/' . $post->slug);

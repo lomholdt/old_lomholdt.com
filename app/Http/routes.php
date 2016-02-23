@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/vask', 'VasketidController@index');
+Route::get('/musse', 'MusseController@index');
 
 
 /*
